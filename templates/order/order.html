@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+<div id="all" style="margin-top: 4%; margin-bottom: 6%;">
+      <div id="content">
+        <div class="container">
+          <div class="row">
+            <div id="checkout" class="col-lg-9">
+              <div class="box border-bottom-0">
+                <form action="." method="post" class="form-group" id="form_order">
+
+                  <div class="content">
+                    <div class="row">
+                      <div class="col-sm-6" style="margin-left: 26%; margin-right: 30%; margin-top: 2%;">
+                        <div class="form-group">
+                          <h2>Forneça suas informações:</h2>
+                          {{ form|crispy }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box-footer d-flex flex-wrap align-items-center justify-content-between">
+                    <div class="right-col">
+                      {% csrf_token %}
+                      <button type="submit" class="genric-btn btn-block success-border circle mb-20 mt-3" id="btn-mobile" style="margin-bottom: 8%;
+    margin-left: 100px;
+    margin-right: 131px;
+    padding-left: 62px;">Finalizar Pedido</button>
+                      
+                    </div>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div id="order-summary" class="box mb-4 p-0">
+                <div class="box-header mt-0">
+                  <h3>Resumo do pedido</h3>
+                </div>
+                <p class="text-muted text-small">Frete e custos adicionais são calculados com base nos valores que você inseriu.</p>
+                <div class="table-responsive">
+                  <table class="table">
+                    <tbody>
+
+                      <tr class="total">
+                        <td>Total</td>
+                        <th>R$ {{ cart.get_total_price }}</th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+
+{% endblock %}
